@@ -1,23 +1,23 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
-import { ErrorRequestHandler } from "express";
-import { ZodError } from "zod";
-import config from "../../config/index";
-import ApiError from "../../errors/ApiError";
-import handleValidationError from "../../errors/handleValidationError";
-import handleZodError from "../../errors/handleZodError";
-import { IGenericErrorMessage } from "../../interfaces/error";
-import { errorlogger } from "../../shared/logger";
+import { ErrorRequestHandler } from 'express';
+import { ZodError } from 'zod';
+import config from '../../config/index';
+import ApiError from '../../errors/ApiError';
+import handleValidationError from '../../errors/handleValidationError';
+import handleZodError from '../../errors/handleZodError';
+import { IGenericErrorMessage } from '../../interfaces/error';
+import { errorlogger } from '../../shared/logger';
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
-  config.env === "development"
-    ? console.log(" ✈ globalErrorHandler ~ ", error)
-    : errorlogger.error(" ✈ globalErrorHandler ~ ", error);
+  config.env === 'development'
+    ? console.log(' ✈ globalErrorHandler ~ ', error)
+    : errorlogger.error(' ✈ globalErrorHandler ~ ', error);
   let statusCode = 500;
-  let message = "something went wrong";
+  let message = 'something went wrong';
   let errorMessages: IGenericErrorMessage[] = [];
 
-  if (error?.name === "ValidationError") {
+  if (error?.name === 'ValidationError') {
     const simplyfiedError = handleValidationError(error);
     statusCode = simplyfiedError.statusCode;
     message = simplyfiedError.message;
@@ -33,7 +33,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     errorMessages = error?.message
       ? [
           {
-            path: "",
+            path: '',
             message: error?.message,
           },
         ]
@@ -43,7 +43,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     errorMessages = error?.message
       ? [
           {
-            path: "",
+            path: '',
             message: error?.message,
           },
         ]
@@ -54,7 +54,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     success: false,
     message,
     errorMessages,
-    stack: config.env !== "production" ? error?.stack : undefined,
+    stack: config.env !== 'production' ? error?.stack : undefined,
   });
 };
 
