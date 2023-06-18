@@ -1,0 +1,36 @@
+Sun Jun 18 2023 21:20:0 [PH] error:  ✈ globalErrorHandler ~  E11000 duplicate key error collection: Online-cow-hut.users index: id_1 dup key: { id: null }
+Sun Jun 18 2023 21:20:19 [PH] error:  ✈ globalErrorHandler ~  E11000 duplicate key error collection: Online-cow-hut.users index: id_1 dup key: { id: null }
+Sun Jun 18 2023 21:25:4 [PH] error:  ✈ globalErrorHandler ~  [
+  {
+    "received": "Buy",
+    "code": "invalid_enum_value",
+    "options": [
+      "Buyer",
+      "Seller"
+    ],
+    "path": [
+      "body",
+      "role"
+    ],
+    "message": "Invalid enum value. Expected 'Buyer' | 'Seller', received 'Buy'"
+  }
+]
+Sun Jun 18 2023 21:26:44 [PH] error:  ✈ globalErrorHandler ~  E11000 duplicate key error collection: Online-cow-hut.users index: id_1 dup key: { id: null }
+Sun Jun 18 2023 21:45:29 [PH] error:  ✈ globalErrorHandler ~  E11000 duplicate key error collection: Online-cow-hut.users index: role_1 dup key: { role: "Seller" }
+Sun Jun 18 2023 21:46:8 [PH] error:  ✈ globalErrorHandler ~  E11000 duplicate key error collection: Online-cow-hut.users index: role_1 dup key: { role: "Buyer" }
+Sun Jun 18 2023 21:52:14 [PH] error:  ✈ globalErrorHandler ~  Academic semester is already exist
+Sun Jun 18 2023 21:52:37 [PH] error:  ✈ globalErrorHandler ~  [
+  {
+    "received": "okk",
+    "code": "invalid_enum_value",
+    "options": [
+      "Buyer",
+      "Seller"
+    ],
+    "path": [
+      "body",
+      "role"
+    ],
+    "message": "Invalid enum value. Expected 'Buyer' | 'Seller', received 'okk'"
+  }
+]

@@ -1,0 +1,108 @@
+Sun Jun 18 2023 19:0:1 [PH] error:  ✈ globalErrorHandler ~  [
+  {
+    "expected": "'Buyer' | 'Seller'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "Role is required "
+  }
+]
+Sun Jun 18 2023 19:0:34 [PH] error:  😢 Failed to connect database connect ETIMEDOUT 34.197.224.93:27017
+Sun Jun 18 2023 19:1:28 [PH] error:  ✈ globalErrorHandler ~  [
+  {
+    "expected": "'Buyer' | 'Seller'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "Role is required "
+  }
+]
+Sun Jun 18 2023 19:2:10 [PH] error:  ✈ globalErrorHandler ~  [
+  {
+    "expected": "'Seller'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "Role is required "
+  }
+]
+Sun Jun 18 2023 19:4:13 [PH] error:  ✈ globalErrorHandler ~  [
+  {
+    "expected": "'Seller'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "Role is required "
+  }
+]
+Sun Jun 18 2023 19:4:35 [PH] error:  ✈ globalErrorHandler ~  [
+  {
+    "expected": "'Seller'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "Role is required "
+  }
+]
+Sun Jun 18 2023 19:8:0 [PH] error:  ✈ globalErrorHandler ~  [
+  {
+    "expected": "'Buyer' | 'Seller'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "Role is required "
+  }
+]
+Sun Jun 18 2023 19:9:1 [PH] error:  ✈ globalErrorHandler ~  [
+  {
+    "expected": "'Buyer' | 'Seller'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "Role is required "
+  }
+]
+Sun Jun 18 2023 19:12:24 [PH] error:  ✈ globalErrorHandler ~  [
+  {
+    "received": "buyer",
+    "code": "invalid_enum_value",
+    "options": [
+      "Buyer",
+      "Seller"
+    ],
+    "path": [
+      "body",
+      "role"
+    ],
+    "message": "Invalid enum value. Expected 'Buyer' | 'Seller', received 'buyer'"
+  }
+]
+Sun Jun 18 2023 19:12:38 [PH] error:  ✈ globalErrorHandler ~  E11000 duplicate key error collection: Online-cow-hut.users index: id_1 dup key: { id: null }
+Sun Jun 18 2023 19:15:29 [PH] error:  😢 Failed to connect database connect ETIMEDOUT 34.197.224.93:27017
+Sun Jun 18 2023 19:15:43 [PH] error:  ✈ globalErrorHandler ~  Operation `users.insertOne()` buffering timed out after 10000ms
+Sun Jun 18 2023 19:16:1 [PH] error:  ✈ globalErrorHandler ~  Operation `users.insertOne()` buffering timed out after 10000ms
+Sun Jun 18 2023 19:16:15 [PH] error:  ✈ globalErrorHandler ~  E11000 duplicate key error collection: Online-cow-hut.users index: id_1 dup key: { id: null }
+Sun Jun 18 2023 19:21:41 [PH] error:  ✈ globalErrorHandler ~  E11000 duplicate key error collection: Online-cow-hut.users index: id_1 dup key: { id: null }
+Sun Jun 18 2023 19:27:39 [PH] error:  ✈ globalErrorHandler ~  E11000 duplicate key error collection: Online-cow-hut.users index: id_1 dup key: { id: null }
+Sun Jun 18 2023 19:28:0 [PH] error:  ✈ globalErrorHandler ~  E11000 duplicate key error collection: Online-cow-hut.users index: id_1 dup key: { id: null }
