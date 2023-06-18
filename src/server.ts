@@ -3,26 +3,25 @@ import { Server } from 'http';
 import mongoose from 'mongoose';
 import app from './app';
 import config from './config/index';
-import { errorlogger, logger } from './shared/logger';
 
 process.on('uncaughtException', error => {
   console.log('uncoughtException is detect', error);
-  errorlogger.error(error);
+  console.log(error);
   process.exit(1);
 });
 let server: Server;
 async function bootstrap() {
   try {
     await mongoose.connect(config.database_url as string);
-    logger.info(`✔ Database is connected successfully `);
+    console.log(`✔ Database is connected successfully `);
   } catch (err) {
-    errorlogger.error(' 😢 Failed to connect database', err);
+    console.log(' 😢 Failed to connect database', err);
   }
 
   process.on('unhandledRejection', error => {
     if (server) {
       server.close(() => {
-        errorlogger.error(error);
+        console.log(error);
         process.exit(1);
       });
     } else {
@@ -31,14 +30,14 @@ async function bootstrap() {
   });
 
   server = app.listen(config.port, () => {
-    logger.info(`Application listening on port ${config.port}`);
+    console.log(`Application listening on port ${config.port}`);
   });
 }
 
 bootstrap();
 
 process.on('SIGTERM', () => {
-  logger.info('Sigterm is recieved');
+  console.log('Sigterm is recieved');
   if (server) {
     console.log('check');
     server.close();
