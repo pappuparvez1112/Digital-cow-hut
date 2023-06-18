@@ -34,19 +34,48 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-// const getSingleSemester = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   const result = await AcademicSemesterService.getSingleSemester(id);
+const getSingleUser = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const result = await UserService.getSingleUser(id);
 
-//   sendResponse<IAcademicSemester>(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: 'Semester retrieved successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<IUser>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User id retrieved successfully',
+    data: result,
+  });
+});
+
+const updateUser = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const updateData = req.body;
+  const result = await UserService.updateUser(id, updateData);
+
+  sendResponse<IUser>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User data is updated successfully',
+    data: result,
+  });
+});
+
+const deleteUser = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const result = await UserService.deleteUser(id);
+
+  sendResponse<IUser>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User deleted successfully',
+    data: result,
+  });
+});
 
 export const UserController = {
   createUser,
   getAllUsers,
+  getSingleUser,
+  updateUser,
+  deleteUser,
 };

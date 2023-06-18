@@ -1,0 +1,17 @@
+Mon Jun 19 2023 1:47:37 [PH] error:  ✈ globalErrorHandler ~  [
+  {
+    "received": "ok",
+    "code": "invalid_enum_value",
+    "options": [
+      "Buyer",
+      "Seller"
+    ],
+    "path": [
+      "body",
+      "role"
+    ],
+    "message": "Invalid enum value. Expected 'Buyer' | 'Seller', received 'ok'"
+  }
+]
+Mon Jun 19 2023 1:56:35 [PH] error:  ✈ globalErrorHandler ~  Unexpected token } in JSON at position 100
+Mon Jun 19 2023 1:56:42 [PH] error:  ✈ globalErrorHandler ~  Invalid User role

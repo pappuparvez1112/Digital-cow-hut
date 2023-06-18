@@ -16,7 +16,7 @@ import { IUserRole } from './user.interface';
 // ];
 export const UserRole: IUserRole[] = ['Buyer', 'Seller'];
 
-// export const academicSemesterTitleCodeMapper: {
+// export const userTitleCodeMapper: {
 //   [key: string]: string;
 // } = {
 //   Autumn: '01',

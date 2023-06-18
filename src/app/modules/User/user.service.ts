@@ -1,3 +1,5 @@
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
 import { IUser } from './user.interface';
 import { User } from './user.model';
 
@@ -81,14 +83,33 @@ Promise<IUser[]> => {
   // };
 };
 
-// const getSingleSemester = async (
-//   id: string,
-// ): Promise<IAcademicSemester | null> => {
-//   const result = await AcademicSemester.findById(id);
-//   return result;
-// };
+const getSingleUser = async (id: string): Promise<IUser | null> => {
+  const result = await User.findById(id);
+  return result;
+};
+
+const updateUser = async (
+  id: string,
+  payload: Partial<IUser>,
+): Promise<IUser | null> => {
+  if (!payload.role) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid User role');
+  }
+  const result = await User.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  return result;
+};
+
+const deleteUser = async (id: string): Promise<IUser | null> => {
+  const result = await User.findByIdAndDelete(id);
+  return result;
+};
 
 export const UserService = {
   createUser,
   getAllUsers,
+  getSingleUser,
+  updateUser,
+  deleteUser,
 };
