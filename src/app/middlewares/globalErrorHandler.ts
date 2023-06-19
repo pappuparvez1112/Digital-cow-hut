@@ -8,12 +8,11 @@ import ApiError from '../../errors/ApiError';
 import handleValidationError from '../../errors/handleValidationError';
 import handleZodError from '../../errors/handleZodError';
 import { IGenericErrorMessage } from '../../interfaces/error';
-import { errorlogger } from '../../shared/logger';
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   config.env === 'development'
     ? console.log(' ✈ globalErrorHandler ~ ', error)
-    : errorlogger.error(' ✈ globalErrorHandler ~ ', error);
+    : console.log(' ✈ globalErrorHandler ~ ', error);
   let statusCode = 500;
   let message = 'something went wrong';
   let errorMessages: IGenericErrorMessage[] = [];
