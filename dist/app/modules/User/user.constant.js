@@ -1,5 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.UserRole = void 0;
 // export const academicSemesterMonths: IAcademicSemesterMonths[] = [
 //   'January',

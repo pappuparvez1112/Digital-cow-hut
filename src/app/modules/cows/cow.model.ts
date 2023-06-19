@@ -1,5 +1,7 @@
+import httpStatus from 'http-status';
 import { Schema, model } from 'mongoose';
-import { breed, category, cowLocation, label } from './cow.constants';
+import ApiError from '../../../errors/ApiError';
+import { breed, category, label } from './cow.constants';
 import { CowModel, ICow } from './cow.interfaces';
 
 const CowsSchema = new Schema<ICow, CowModel>(
@@ -15,35 +17,28 @@ const CowsSchema = new Schema<ICow, CowModel>(
     price: {
       type: String,
       required: true,
-      unique: true,
     },
     location: {
       type: String,
       required: true,
-      unique: true,
-      enum: cowLocation,
     },
     breed: {
       type: String,
       required: true,
-      unique: true,
       enum: breed,
     },
     weight: {
       type: String,
       required: true,
-      unique: true,
     },
     label: {
       type: String,
       required: true,
-      unique: true,
       enum: label,
     },
     category: {
       type: String,
       required: true,
-      unique: true,
       enum: category,
     },
     seller: {
@@ -59,5 +54,16 @@ const CowsSchema = new Schema<ICow, CowModel>(
     },
   },
 );
+
+CowsSchema.pre('save', async function (next) {
+  const isExist = await Cow.findOne({
+    name: this.name,
+    label: this.label,
+  });
+  if (isExist) {
+    throw new ApiError(httpStatus.CONFLICT, 'This cow fiield is already exist');
+  }
+  next();
+});
 
 export const Cow = model<ICow, CowModel>('Cows', CowsSchema);

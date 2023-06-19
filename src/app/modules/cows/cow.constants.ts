@@ -2,7 +2,7 @@
 
 import { IBreed, ICategory, ICowLocation, ILabel } from './cow.interfaces';
 
-// export const academicFacultySearchableFields = ['title'];
+export const academicFacultySearchableFields = ['title'];
 
 export const cowLocation: ICowLocation[] = [
   'Dhaka',

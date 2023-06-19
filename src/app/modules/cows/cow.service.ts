@@ -1,3 +1,5 @@
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
 import { ICow } from './cow.interfaces';
 import { Cow } from './cow.model';
 
@@ -63,31 +65,36 @@ const getAllCows = async (): Promise<ICow[]> => {
 //   };
 // };
 
-// const getSingleFaculty = async (
-//   id: string,
-// ): Promise<IAcademicFaculty | null> => {
-//   const result = await AcademicFaculty.findById(id);
-//   return result;
-// };
+const getSingleCow = async (id: string): Promise<ICow | null> => {
+  const result = await Cow.findById(id);
+  return result;
+};
 
-// const updateFaculty = async (
-//   id: string,
-//   payload: Partial<IAcademicFaculty>,
-// ): Promise<IAcademicFaculty | null> => {
-//   const result = await AcademicFaculty.findOneAndUpdate({ _id: id }, payload, {
-//     new: true,
-//   });
-//   return result;
-// };
+const updateCows = async (
+  id: string,
+  payload: Partial<ICow>,
+): Promise<ICow | null> => {
+  if (!payload.label && payload.category && payload.breed && payload.location) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Invalid Cow update required label and category',
+    );
+  }
+  const result = await Cow.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  return result;
+};
 
-// const deleteByIdFromDB = async (
-//   id: string,
-// ): Promise<IAcademicFaculty | null> => {
-//   const result = await AcademicFaculty.findByIdAndDelete(id);
-//   return result;
-// };
+const deleteCow = async (id: string): Promise<ICow | null> => {
+  const result = await Cow.findByIdAndDelete(id);
+  return result;
+};
 
 export const CowService = {
   createCow,
   getAllCows,
+  getSingleCow,
+  updateCows,
+  deleteCow,
 };

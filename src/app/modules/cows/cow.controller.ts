@@ -36,46 +36,49 @@ const getAllCows = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-// const getSingleFaculty = catchAsync(async (req: Request, res: Response) => {
-//   const { id } = req.params;
-//   const result = await AcademicFacultyService.getSingleFaculty(id);
+const getSingleCow = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await CowService.getSingleCow(id);
 
-//   sendResponse<IAcademicFaculty>(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: 'Academic Faculty fetched successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<ICow>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Single cow field fetched successfully',
+    data: result,
+  });
+});
 
-// const updateFaculty = catchAsync(
-//   catchAsync(async (req: Request, res: Response) => {
-//     const { id } = req.params;
-//     const updatedData = req.body;
-//     const result = await AcademicFacultyService.updateFaculty(id, updatedData);
+const updateCows = catchAsync(
+  catchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const updatedData = req.body;
+    const result = await CowService.updateCows(id, updatedData);
 
-//     sendResponse<IAcademicFaculty>(res, {
-//       statusCode: httpStatus.OK,
-//       success: true,
-//       message: 'Academic Faculty updated successfully',
-//       data: result,
-//     });
-//   }),
-// );
+    sendResponse<ICow>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Cow field updated successfully',
+      data: result,
+    });
+  }),
+);
 
-// const deleteFaculty = catchAsync(async (req: Request, res: Response) => {
-//   const { id } = req.params;
-//   const result = await AcademicFacultyService.deleteByIdFromDB(id);
+const deleteCow = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await CowService.deleteCow(id);
 
-//   sendResponse<IAcademicFaculty>(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: 'Academic Faculty deleted successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<ICow>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Cow field deleted successfully',
+    data: result,
+  });
+});
 
 export const CowController = {
   createCow,
   getAllCows,
+  getSingleCow,
+  updateCows,
+  deleteCow,
 };

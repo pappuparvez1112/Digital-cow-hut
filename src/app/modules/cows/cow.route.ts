@@ -11,15 +11,15 @@ router.post(
   CowController.createCow,
 );
 
-// router.get('/:id', AcademicFacultyController.getSingleFaculty);
+router.get('/:id', CowController.getSingleCow);
 
-// router.patch(
-//   '/:id',
-//   validateRequest(AcademicFacultyValidation.updatefacultyZodSchema),
-//   AcademicFacultyController.updateFaculty,
-// );
+router.patch(
+  '/:id',
+  validateRequest(CowValidation.updateCowZodSchema),
+  CowController.updateCows,
+);
 
-// router.delete('/:id', AcademicFacultyController.deleteFaculty);
+router.delete('/:id', CowController.deleteCow);
 
 router.get('/', CowController.getAllCows);
 
