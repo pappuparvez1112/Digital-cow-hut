@@ -20,7 +20,4 @@ const moduleRoutes = [
 ];
 moduleRoutes.forEach(route => router.use(route.path, route.route));
 
-// router.use('/api/v1/users/', UserRoutes);
-// router.use('/api/v1/academic-semester', SemesterRoutes);
-
 export default router;

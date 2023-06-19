@@ -17,19 +17,11 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-  // const filters = pick(req.query, academicSemesterFilterableFields);
-  // const paginationOptions = pick(req.query, paginationFields);
-
-  const result = await UserService
-    .getAllUsers
-    // filters,
-    // paginationOptions,
-    ();
+  const result = await UserService.getAllUsers();
   sendResponse<IUser[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'User retrieved successfully',
-    // meta: result.meta,
     data: result,
   });
 });
