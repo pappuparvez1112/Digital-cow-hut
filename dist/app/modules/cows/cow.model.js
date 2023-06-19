@@ -12,60 +12,68 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Cow = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const mongoose_1 = require("mongoose");
 const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
-const user_constant_1 = require("./user.constant");
-const UserSchema = new mongoose_1.Schema({
-    role: {
-        type: String,
-        required: true,
-        enum: user_constant_1.UserRole,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
+const cow_constants_1 = require("./cow.constants");
+const CowsSchema = new mongoose_1.Schema({
     name: {
-        firstName: {
-            type: String,
-            required: true,
-        },
-        lastName: {
-            type: String,
-            required: true,
-        },
+        type: String,
+        required: true,
     },
-    phoneNumber: {
+    age: {
+        type: String,
+        required: true,
+    },
+    price: {
+        type: String,
+        required: true,
+    },
+    location: {
+        type: String,
+        required: true,
+    },
+    breed: {
+        type: String,
+        required: true,
+        enum: cow_constants_1.breed,
+    },
+    weight: {
+        type: String,
+        required: true,
+    },
+    label: {
+        type: String,
+        required: true,
+        enum: cow_constants_1.label,
+    },
+    category: {
+        type: String,
+        required: true,
+        enum: cow_constants_1.category,
+    },
+    seller: {
         type: String,
         required: true,
         unique: true,
     },
-    address: {
-        type: String,
-        required: true,
-    },
-    budget: {
-        type: String,
-        required: true,
-    },
-    income: {
-        type: String,
-        required: true,
-    },
 }, {
     timestamps: true,
+    toJSON: {
+        virtuals: true,
+    },
 });
-UserSchema.pre('save', function (next) {
+CowsSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const isExist = yield exports.User.findOne({
-            phoneNumber: this.phoneNumber,
+        const isExist = yield exports.Cow.findOne({
+            name: this.name,
+            label: this.label,
         });
         if (isExist) {
-            throw new ApiError_1.default(http_status_1.default.CONFLICT, 'This role is already exist');
+            throw new ApiError_1.default(http_status_1.default.CONFLICT, 'This cow fiield is already exist');
         }
         next();
     });
 });
-exports.User = (0, mongoose_1.model)('User', UserSchema);
+exports.Cow = (0, mongoose_1.model)('Cows', CowsSchema);

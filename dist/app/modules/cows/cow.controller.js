@@ -23,65 +23,71 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserController = void 0;
+exports.CowController = void 0;
 const http_status_1 = __importDefault(require("http-status"));
+const pagination_1 = require("../../../constant/pagination");
 const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
+const pick_1 = __importDefault(require("../../../shared/pick"));
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
-const user_service_1 = require("./user.service");
-const createUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userData = __rest(req.body, []);
-    const result = yield user_service_1.UserService.createUser(userData);
+const cow_constants_1 = require("./cow.constants");
+const cow_service_1 = require("./cow.service");
+const createCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const cowData = __rest(req.body, []);
+    const result = yield cow_service_1.CowService.createCow(cowData);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'User is created successfully',
+        message: 'Cow field created successfully',
         data: result,
     });
 }));
-const getAllUsers = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield user_service_1.UserService.getAllUsers();
+const getAllCows = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const filters = (0, pick_1.default)(req.query, cow_constants_1.cowFilterableFields);
+    const paginationOptions = (0, pick_1.default)(req.query, pagination_1.paginationFields);
+    const result = yield cow_service_1.CowService.getAllCows(filters, paginationOptions);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'User retrieved successfully',
-        data: result,
+        message: 'All Cows retrieved successfully',
+        meta: result.meta,
+        data: result.data,
     });
 }));
-const getSingleUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.params.id;
-    const result = yield user_service_1.UserService.getSingleUser(id);
+const getSingleCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield cow_service_1.CowService.getSingleCow(id);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'User id retrieved successfully',
+        message: 'Single cow field fetched successfully',
         data: result,
     });
 }));
-const updateUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.params.id;
-    const updateData = req.body;
-    const result = yield user_service_1.UserService.updateUser(id, updateData);
+const updateCows = (0, catchAsync_1.default)((0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const updatedData = req.body;
+    const result = yield cow_service_1.CowService.updateCows(id, updatedData);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'User data is updated successfully',
+        message: 'Cow field updated successfully',
         data: result,
     });
-}));
-const deleteUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.params.id;
-    const result = yield user_service_1.UserService.deleteUser(id);
+})));
+const deleteCow = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield cow_service_1.CowService.deleteCow(id);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'User deleted successfully',
+        message: 'Cow field deleted successfully',
         data: result,
     });
 }));
-exports.UserController = {
-    createUser,
-    getAllUsers,
-    getSingleUser,
-    updateUser,
-    deleteUser,
+exports.CowController = {
+    createCow,
+    getAllCows,
+    getSingleCow,
+    updateCows,
+    deleteCow,
 };
