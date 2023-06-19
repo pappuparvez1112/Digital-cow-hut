@@ -33,6 +33,6 @@ export type ICow = {
 
 export type CowModel = Model<ICow, Record<string, unknown>>;
 
-export type IAcademicFacultyFilters = {
+export type ICowFilters = {
   searchTerm?: string;
 };

@@ -1,69 +1,74 @@
 import httpStatus from 'http-status';
+import { SortOrder } from 'mongoose';
 import ApiError from '../../../errors/ApiError';
-import { ICow } from './cow.interfaces';
+import { paginationHelper } from '../../../helpers/paginationHelper';
+import { IGenericResponse } from '../../../interfaces/common';
+import { IPaginationOptions } from '../../../interfaces/pagination';
+import { cowSearchableFields } from './cow.constants';
+import { ICow, ICowFilters } from './cow.interfaces';
 import { Cow } from './cow.model';
 
 const createCow = async (payload: ICow): Promise<ICow | null> => {
   const result = await Cow.create(payload);
   return result;
 };
-const getAllCows = async (): Promise<ICow[]> => {
-  const cows = await Cow.find();
-  return cows;
-};
-// const getAllCows = async (
-//   filters: IAcademicFacultyFilters,
-//   paginationOptions: IPaginationOptions,
-// ): Promise<IGenericResponse<IAcademicFaculty[]>> => {
-//   const { searchTerm, ...filtersData } = filters;
-//   const { page, limit, skip, sortBy, sortOrder } =
-//     paginationHelper.calculatePagination(paginationOptions);
-
-//   const andConditions = [];
-
-//   if (searchTerm) {
-//     andConditions.push({
-//       $or: academicFacultySearchableFields.map(field => ({
-//         [field]: {
-//           $regex: searchTerm,
-//           $options: 'i',
-//         },
-//       })),
-//     });
-//   }
-
-//   if (Object.keys(filtersData).length) {
-//     andConditions.push({
-//       $and: Object.entries(filtersData).map(([field, value]) => ({
-//         [field]: value,
-//       })),
-//     });
-//   }
-
-//   const sortConditions: { [key: string]: SortOrder } = {};
-
-//   if (sortBy && sortOrder) {
-//     sortConditions[sortBy] = sortOrder;
-//   }
-//   const whereConditions =
-//     andConditions.length > 0 ? { $and: andConditions } : {};
-
-//   const result = await AcademicFaculty.find(whereConditions)
-//     .sort(sortConditions)
-//     .skip(skip)
-//     .limit(limit);
-
-//   const total = await AcademicFaculty.countDocuments();
-
-//   return {
-//     meta: {
-//       page,
-//       limit,
-//       total,
-//     },
-//     data: result,
-//   };
+// const getAllCows = async (): Promise<ICow[]> => {
+//   const cows = await Cow.find();
+//   return cows;
 // };
+const getAllCows = async (
+  filters: ICowFilters,
+  paginationOptions: IPaginationOptions,
+): Promise<IGenericResponse<ICow[]>> => {
+  const { searchTerm, ...filtersData } = filters;
+  const { page, limit, skip, sortBy, sortOrder } =
+    paginationHelper.calculatePagination(paginationOptions);
+
+  const andConditions = [];
+
+  if (searchTerm) {
+    andConditions.push({
+      $or: cowSearchableFields.map(field => ({
+        [field]: {
+          $regex: searchTerm,
+          $options: 'i',
+        },
+      })),
+    });
+  }
+
+  if (Object.keys(filtersData).length) {
+    andConditions.push({
+      $and: Object.entries(filtersData).map(([field, value]) => ({
+        [field]: value,
+      })),
+    });
+  }
+
+  const sortConditions: { [key: string]: SortOrder } = {};
+
+  if (sortBy && sortOrder) {
+    sortConditions[sortBy] = sortOrder;
+  }
+  const whereConditions =
+    andConditions.length > 0 ? { $and: andConditions } : {};
+
+  const result = await Cow.find(whereConditions)
+    .sort(sortConditions)
+    .skip(skip)
+    .limit(limit);
+
+  const total = await Cow.countDocuments();
+
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+    },
+    data: result,
+  };
+};
 
 const getSingleCow = async (id: string): Promise<ICow | null> => {
   const result = await Cow.findById(id);

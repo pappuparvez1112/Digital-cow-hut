@@ -2,7 +2,13 @@
 
 import { IBreed, ICategory, ICowLocation, ILabel } from './cow.interfaces';
 
-export const academicFacultySearchableFields = ['title'];
+export const cowSearchableFields = ['location', 'breed', 'category'];
+export const cowFilterableFields = [
+  'searchTerm',
+  'location',
+  'breed',
+  'category',
+];
 
 export const cowLocation: ICowLocation[] = [
   'Dhaka',
