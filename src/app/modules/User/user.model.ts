@@ -35,7 +35,7 @@ const UserSchema = new Schema<IUser>(
       required: true,
     },
     budget: {
-      type: String,
+      type: Number,
       required: true,
     },
     income: {
@@ -53,7 +53,10 @@ UserSchema.pre('save', async function (next) {
     phoneNumber: this.phoneNumber,
   });
   if (isExist) {
-    throw new ApiError(httpStatus.CONFLICT, 'This role is already exist');
+    throw new ApiError(
+      httpStatus.CONFLICT,
+      'This Phone number is already exist',
+    );
   }
   next();
 });

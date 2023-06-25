@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import { IUser } from './user.interface';
@@ -8,6 +9,10 @@ import { UserService } from './user.service';
 
 const createUser = catchAsync(async (req: Request, res: Response) => {
   const { ...userData } = req.body;
+  userData.income = 0;
+  if (userData.budget <= '30000') {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'budget should be avobe 30000');
+  }
   const result = await UserService.createUser(userData);
   sendResponse(res, {
     statusCode: httpStatus.OK,

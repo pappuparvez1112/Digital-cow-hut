@@ -8,7 +8,7 @@ export type IUser = {
   name: string;
   phoneNumber: string;
   address: string;
-  budget: string;
+  budget: number;
   income: string;
 };
 export type IAcademicSemesterFilters = {
