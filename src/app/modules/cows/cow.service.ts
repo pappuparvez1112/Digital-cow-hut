@@ -9,7 +9,7 @@ import { ICow, ICowFilters } from './cow.interfaces';
 import { Cow } from './cow.model';
 
 const createCow = async (payload: ICow): Promise<ICow | null> => {
-  const result = await Cow.create(payload);
+  const result = (await Cow.create(payload)).populate('seller');
   return result;
 };
 // const getAllCows = async (): Promise<ICow[]> => {
@@ -54,6 +54,7 @@ const getAllCows = async (
     andConditions.length > 0 ? { $and: andConditions } : {};
 
   const result = await Cow.find(whereConditions)
+    .populate('seller')
     .sort(sortConditions)
     .skip(skip)
     .limit(limit);
