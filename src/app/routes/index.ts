@@ -2,6 +2,7 @@ import express from 'express';
 import { UserRoutes } from '../modules/User/user.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { CowRoutes } from '../modules/cows/cow.route';
+import { OrdersRoutes } from '../modules/order/order.routes';
 
 const router = express.Router();
 const moduleRoutes = [
@@ -16,6 +17,10 @@ const moduleRoutes = [
   {
     path: '/cow',
     route: CowRoutes,
+  },
+  {
+    path: '/orders',
+    route: OrdersRoutes,
   },
 ];
 moduleRoutes.forEach(route => router.use(route.path, route.route));
