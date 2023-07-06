@@ -10,6 +10,7 @@ router.post(
   validateRequest(OrdersValidation.createOrdersZodSchema),
   OrdersController.createOrders,
 );
+router.get('/', OrdersController.getAllOrders);
 
 // router.get('/:id', AcademicDepartmentController.getSingleDepartment);
 

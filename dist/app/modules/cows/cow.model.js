@@ -54,9 +54,9 @@ const CowsSchema = new mongoose_1.Schema({
         enum: cow_constants_1.category,
     },
     seller: {
-        type: String,
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'User',
         required: true,
-        unique: true,
     },
 }, {
     timestamps: true,

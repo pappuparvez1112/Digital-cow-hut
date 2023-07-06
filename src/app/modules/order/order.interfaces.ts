@@ -9,7 +9,8 @@ export type IOrders = {
 
 export type OrdersModel = Model<IOrders, Record<string, unknown>>;
 
-// export type IAcademicDepartmentFilters = {
-//   searchTerm?: string;
-//   academicFaculty?: Types.ObjectId;
-// };
+export type IOrderFilters = {
+  searchTerm?: string;
+  cow?: Types.ObjectId;
+  buyer?: Types.ObjectId;
+};

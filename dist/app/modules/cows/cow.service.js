@@ -30,7 +30,7 @@ const paginationHelper_1 = require("../../../helpers/paginationHelper");
 const cow_constants_1 = require("./cow.constants");
 const cow_model_1 = require("./cow.model");
 const createCow = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield cow_model_1.Cow.create(payload);
+    const result = (yield cow_model_1.Cow.create(payload)).populate('seller');
     return result;
 });
 // const getAllCows = async (): Promise<ICow[]> => {
@@ -64,6 +64,7 @@ const getAllCows = (filters, paginationOptions) => __awaiter(void 0, void 0, voi
     }
     const whereConditions = andConditions.length > 0 ? { $and: andConditions } : {};
     const result = yield cow_model_1.Cow.find(whereConditions)
+        .populate('seller')
         .sort(sortConditions)
         .skip(skip)
         .limit(limit);

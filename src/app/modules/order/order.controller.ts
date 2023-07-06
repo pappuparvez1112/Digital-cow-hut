@@ -1,8 +1,11 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 
+import { paginationFields } from '../../../constant/pagination';
 import catchAsync from '../../../shared/catchAsync';
+import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
+import { orderFilterableFields } from './order.constants';
 import { IOrders } from './order.interfaces';
 import { OrdersService } from './order.service';
 
@@ -19,23 +22,20 @@ const createOrders = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-// const getAllDepartments = catchAsync(async (req: Request, res: Response) => {
-//   const filters = pick(req.query, academicDepartmentFilterableFields);
-//   const paginationOptions = pick(req.query, paginationFields);
+const getAllOrders = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, orderFilterableFields);
+  const paginationOptions = pick(req.query, paginationFields);
 
-//   const result = await AcademicDepartmentService.getAllDepartments(
-//     filters,
-//     paginationOptions,
-//   );
+  const result = await OrdersService.getAllOrders(filters, paginationOptions);
 
-//   sendResponse<IAcademicDepartment[]>(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: 'Academic departments fetched successfully',
-//     meta: result.meta,
-//     data: result.data,
-//   });
-// });
+  sendResponse<IOrders[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Orders fetched successfully',
+    meta: result.meta,
+    data: result.data,
+  });
+});
 
 // const getSingleDepartment = catchAsync(async (req: Request, res: Response) => {
 //   const { id } = req.params;
@@ -79,4 +79,5 @@ export const OrdersController = {
   // updateDepartment,
   // deleteDepartment,
   createOrders,
+  getAllOrders,
 };

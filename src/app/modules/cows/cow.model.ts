@@ -15,7 +15,7 @@ const CowsSchema = new Schema<ICow, CowModel>(
       required: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
     },
     location: {

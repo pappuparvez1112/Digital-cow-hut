@@ -58,7 +58,7 @@ const order_model_1 = require("./order.model");
 //   };
 // };
 const createOrders = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield order_model_1.Orders.create(payload);
+    const result = (yield (yield order_model_1.Orders.create(payload)).populate('cow')).populate('buyer');
     return result;
 });
 // const getSingleDepartment = async (

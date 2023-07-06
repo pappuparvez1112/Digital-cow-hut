@@ -33,6 +33,9 @@ const createCowZodSchema = zod_1.z.object({
         label: zod_1.z.enum(['for sale', 'sold out'], {
             required_error: 'Label is required',
         }),
+        seller: zod_1.z.string({
+            required_error: 'Seller id is required',
+        }),
     }),
 });
 const updateCowZodSchema = zod_1.z.object({
@@ -65,6 +68,9 @@ const updateCowZodSchema = zod_1.z.object({
         }),
         label: zod_1.z.enum(['for sale', 'sold out'], {
             required_error: 'Label is required',
+        }),
+        seller: zod_1.z.string({
+            required_error: 'Seller id is required',
         }),
     }),
 });

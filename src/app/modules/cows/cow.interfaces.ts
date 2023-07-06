@@ -23,7 +23,7 @@ export type ICategory = 'Dairy' | 'Beef' | 'Dual Purpose';
 export type ICow = {
   name: string;
   age: string;
-  price: string;
+  price: number;
   location: ICowLocation;
   breed: IBreed;
   weight: string;
@@ -36,4 +36,10 @@ export type CowModel = Model<ICow, Record<string, unknown>>;
 
 export type ICowFilters = {
   searchTerm?: string;
+  location?: string;
+  breed?: string;
+  category?: string;
+  price?: number;
+  maxPrice?: number;
+  minPrice?: number;
 };
