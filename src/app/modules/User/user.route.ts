@@ -4,7 +4,6 @@ import { UserController } from './user.controller';
 import { UserValidation } from './user.validation';
 
 const router = express.Router();
-
 router.get('/:id', UserController.getSingleUser);
 router.patch(
   '/:id',

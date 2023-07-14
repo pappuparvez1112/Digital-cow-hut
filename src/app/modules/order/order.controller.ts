@@ -12,6 +12,7 @@ import { OrdersService } from './order.service';
 const createOrders = catchAsync(async (req: Request, res: Response) => {
   const { ...ordersData } = req.body;
   console.log(ordersData);
+
   const result = await OrdersService.createOrders(ordersData);
 
   sendResponse<IOrders>(res, {

@@ -27,7 +27,7 @@ const CowsSchema = new mongoose_1.Schema({
         required: true,
     },
     price: {
-        type: String,
+        type: Number,
         required: true,
     },
     location: {
@@ -68,7 +68,6 @@ CowsSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         const isExist = yield exports.Cow.findOne({
             name: this.name,
-            label: this.label,
         });
         if (isExist) {
             throw new ApiError_1.default(http_status_1.default.CONFLICT, 'This cow fiield is already exist');

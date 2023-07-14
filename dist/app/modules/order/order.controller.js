@@ -25,8 +25,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrdersController = void 0;
 const http_status_1 = __importDefault(require("http-status"));
+const pagination_1 = require("../../../constant/pagination");
 const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
+const pick_1 = __importDefault(require("../../../shared/pick"));
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
+const order_constants_1 = require("./order.constants");
 const order_service_1 = require("./order.service");
 const createOrders = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const ordersData = __rest(req.body, []);
@@ -39,21 +42,18 @@ const createOrders = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
         data: result,
     });
 }));
-// const getAllDepartments = catchAsync(async (req: Request, res: Response) => {
-//   const filters = pick(req.query, academicDepartmentFilterableFields);
-//   const paginationOptions = pick(req.query, paginationFields);
-//   const result = await AcademicDepartmentService.getAllDepartments(
-//     filters,
-//     paginationOptions,
-//   );
-//   sendResponse<IAcademicDepartment[]>(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: 'Academic departments fetched successfully',
-//     meta: result.meta,
-//     data: result.data,
-//   });
-// });
+const getAllOrders = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const filters = (0, pick_1.default)(req.query, order_constants_1.orderFilterableFields);
+    const paginationOptions = (0, pick_1.default)(req.query, pagination_1.paginationFields);
+    const result = yield order_service_1.OrdersService.getAllOrders(filters, paginationOptions);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Orders fetched successfully',
+        meta: result.meta,
+        data: result.data,
+    });
+}));
 // const getSingleDepartment = catchAsync(async (req: Request, res: Response) => {
 //   const { id } = req.params;
 //   const result = await AcademicDepartmentService.getSingleDepartment(id);
@@ -90,4 +90,5 @@ exports.OrdersController = {
     // updateDepartment,
     // deleteDepartment,
     createOrders,
+    getAllOrders,
 };

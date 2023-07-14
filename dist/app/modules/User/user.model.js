@@ -16,16 +16,20 @@ exports.User = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const mongoose_1 = require("mongoose");
 const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
-const user_constant_1 = require("./user.constant");
 const UserSchema = new mongoose_1.Schema({
+    id: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     role: {
         type: String,
         required: true,
-        enum: user_constant_1.UserRole,
     },
     password: {
         type: String,
         required: true,
+        select: 0,
     },
     name: {
         firstName: {
@@ -38,7 +42,7 @@ const UserSchema = new mongoose_1.Schema({
         },
     },
     phoneNumber: {
-        type: String,
+        type: Number,
         required: true,
         unique: true,
     },
@@ -53,6 +57,10 @@ const UserSchema = new mongoose_1.Schema({
     income: {
         type: String,
         required: true,
+    },
+    profileImage: {
+        type: String,
+        // required: true,
     },
 }, {
     timestamps: true,

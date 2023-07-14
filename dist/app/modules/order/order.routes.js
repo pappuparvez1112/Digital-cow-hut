@@ -10,6 +10,7 @@ const order_controller_1 = require("./order.controller");
 const order_validations_1 = require("./order.validations");
 const router = express_1.default.Router();
 router.post('/', (0, validateRequest_1.default)(order_validations_1.OrdersValidation.createOrdersZodSchema), order_controller_1.OrdersController.createOrders);
+router.get('/', order_controller_1.OrdersController.getAllOrders);
 // router.get('/:id', AcademicDepartmentController.getSingleDepartment);
 // router.patch(
 //   '/:id',

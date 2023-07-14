@@ -1,19 +1,23 @@
 import httpStatus from 'http-status';
 import { Schema, model } from 'mongoose';
 import ApiError from '../../../errors/ApiError';
-import { UserRole } from './user.constant';
 import { IUser, IUserModel } from './user.interface';
 
 const UserSchema = new Schema<IUser>(
   {
+    id: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     role: {
       type: String,
       required: true,
-      enum: UserRole,
     },
     password: {
       type: String,
       required: true,
+      select: 0,
     },
     name: {
       firstName: {
@@ -26,7 +30,7 @@ const UserSchema = new Schema<IUser>(
       },
     },
     phoneNumber: {
-      type: String,
+      type: Number,
       required: true,
       unique: true,
     },
@@ -41,6 +45,10 @@ const UserSchema = new Schema<IUser>(
     income: {
       type: String,
       required: true,
+    },
+    profileImage: {
+      type: String,
+      // required: true,
     },
   },
   {

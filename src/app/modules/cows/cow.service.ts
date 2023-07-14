@@ -50,11 +50,12 @@ const getAllCows = async (
   // }
 
   if (Object.keys(filtersData).length) {
-    const { maxPrice, minPrice } = filtersData;
     const andConditions = [];
+    const { minPrice, maxPrice } = filtersData;
+
     console.log(filtersData);
 
-    if (maxPrice && minPrice) {
+    if (minPrice && maxPrice) {
       andConditions.push({
         $and: [{ price: { $gte: minPrice } }, { price: { $lte: maxPrice } }],
       });

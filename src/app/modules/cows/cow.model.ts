@@ -58,7 +58,6 @@ const CowsSchema = new Schema<ICow, CowModel>(
 CowsSchema.pre('save', async function (next) {
   const isExist = await Cow.findOne({
     name: this.name,
-    label: this.label,
   });
   if (isExist) {
     throw new ApiError(httpStatus.CONFLICT, 'This cow fiield is already exist');

@@ -8,6 +8,8 @@ exports.cowFilterableFields = [
     'location',
     'breed',
     'category',
+    'minPrice',
+    'maxPrice',
 ];
 exports.cowLocation = [
     'Dhaka',

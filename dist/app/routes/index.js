@@ -11,12 +11,12 @@ const order_routes_1 = require("../modules/order/order.routes");
 const router = express_1.default.Router();
 const moduleRoutes = [
     {
-        path: '/auth',
-        route: auth_route_1.AuthRoutes,
-    },
-    {
         path: '/user',
         route: user_route_1.UserRoutes,
+    },
+    {
+        path: '/auth',
+        route: auth_route_1.AuthRoutes,
     },
     {
         path: '/cow',

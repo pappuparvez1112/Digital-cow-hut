@@ -3,15 +3,17 @@ import { Model } from 'mongoose';
 export type IUserRole = 'Seller' | 'Buyer';
 
 export type IUser = {
+  id: string;
   password: string;
   role: IUserRole;
   name: string;
-  phoneNumber: string;
+  phoneNumber: number;
   address: string;
-  budget: number;
+  budget: number | undefined;
   income: string;
+  profileImage?: string;
 };
-export type IAcademicSemesterFilters = {
+export type IUserFilters = {
   searchTerm?: string;
 };
 

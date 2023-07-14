@@ -8,9 +8,8 @@ export const cowFilterableFields = [
   'location',
   'breed',
   'category',
-  'price',
-  'maxPrice',
   'minPrice',
+  'maxPrice',
 ];
 
 export const cowLocation: ICowLocation[] = [

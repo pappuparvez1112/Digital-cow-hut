@@ -51,12 +51,33 @@ const getAllCows = (filters, paginationOptions) => __awaiter(void 0, void 0, voi
             })),
         });
     }
+    // if (Object.keys(filtersData).length) {
+    //   const {maxPrice,minPrice}=filtersData
+    //     andConditions.push({
+    //       $and: [{ price: { $gte: minPrice } }, { price: { $lte: maxPrice } }],
+    //     });
+    //   andConditions.push({
+    //     $and: Object.entries(filtersData).map(([field, value]) => ({
+    //       [field]: value,
+    //     })),
+    //   });
+    // }
     if (Object.keys(filtersData).length) {
-        andConditions.push({
-            $and: Object.entries(filtersData).map(([field, value]) => ({
-                [field]: value,
-            })),
-        });
+        const andConditions = [];
+        const { minPrice, maxPrice } = filtersData;
+        console.log(filtersData);
+        if (minPrice && maxPrice) {
+            andConditions.push({
+                $and: [{ price: { $gte: minPrice } }, { price: { $lte: maxPrice } }],
+            });
+        }
+        if (Object.keys(filtersData).length) {
+            andConditions.push({
+                $and: Object.entries(filtersData).map(([field, value]) => ({
+                    [field]: value,
+                })),
+            });
+        }
     }
     const sortConditions = {};
     if (sortBy && sortOrder) {
