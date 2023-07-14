@@ -7,7 +7,7 @@ import { OrdersRoutes } from '../modules/order/order.routes';
 const router = express.Router();
 const moduleRoutes = [
   {
-    path: '/user',
+    path: '/users',
     route: UserRoutes,
   },
   {
@@ -15,7 +15,7 @@ const moduleRoutes = [
     route: AuthRoutes,
   },
   {
-    path: '/cow',
+    path: '/cows',
     route: CowRoutes,
   },
   {

@@ -1,28 +1,28 @@
+livelink: https://digital-cow-hut-backend-orcin.vercel.app/
+
 User
 
-api/v1/auth/signup (POST)
-api/v1/user (GET)
-api/v1/user/648f39028baaaae7f5c18d8d (Single GET)
-api/v1/user/648f39028baaaae7f5c18d8d (PATCH)
-api/v1/user/648f38fc8baaaae7f5c18d8a(DELETE)
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/auth/signup (POST)
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/users (GET)
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/users/64b18d10127e9978b913f518 (Single GET)
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/users/64b13898c375fbc277cc5951 (PATCH)
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/users/64b17462755fb2a254b7efc9(DELETE)
 
 Cows
 
-api/v1/cow/create-cow(POST)
-api/v1/cow (GET)
-api/v1/cow/64907e1410026a7505d8d24e (Single GET)
-api/v1/cow/64907e1410026a7505d8d24e(PATCH)
-api/v1/cow/64907e3910026a7505d8d258 (DELETE)
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows (POST)
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows (GET)
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/64b18a7b78c30d8fc7e4d85a (Single GET)
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/64b18a7b78c30d8fc7e4d85a (PATCH)
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/64b15f76755fb2a254b7efb9 (DELETE)
 
 Pagination and Filtering routes of Cows
-api/v1/cow/?page=1&limit=10
-api/v1/cow/?sortBy=price&sortOrder=asc
-api/v1/cow/?minPrice=20000&maxPrice=50000
-api/v1/cow/?location=Rajshahi
-api/v1/cow/?searchTerm=dha
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/?page=1&limit=10
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/?sortBy=price&sortOrder=asc
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/?minPrice=20000&maxPrice=50000
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/?location=dhaka
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/?searchTerm=ra
 
 Orders
-api/v1/orders (POST)
-api/v1/orders (GET)
-
-livelink: https://digital-cow-hut-backend-orcin.vercel.app/api/v1/user
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/orders (POST)
+https://digital-cow-hut-backend-orcin.vercel.app/api/v1/orders (GET)

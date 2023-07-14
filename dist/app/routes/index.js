@@ -11,7 +11,7 @@ const order_routes_1 = require("../modules/order/order.routes");
 const router = express_1.default.Router();
 const moduleRoutes = [
     {
-        path: '/user',
+        path: '/users',
         route: user_route_1.UserRoutes,
     },
     {
@@ -19,7 +19,7 @@ const moduleRoutes = [
         route: auth_route_1.AuthRoutes,
     },
     {
-        path: '/cow',
+        path: '/cows',
         route: cow_route_1.CowRoutes,
     },
     {
