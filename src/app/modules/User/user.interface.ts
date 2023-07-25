@@ -17,4 +17,14 @@ export type IUserFilters = {
   searchTerm?: string;
 };
 
-export type IUserModel = Model<IUser>;
+// export type IUserModel = Model<IUser>;
+
+export type UserModel = {
+  isUserExist(
+    phoneNumber: string,
+  ): Promise<Pick<IUser, 'id' | 'phoneNumber' | 'password' | 'role'>>;
+  isPasswordMatched(
+    givenPassword: string,
+    savedPassword: string,
+  ): Promise<boolean>;
+} & Model<IUser>;

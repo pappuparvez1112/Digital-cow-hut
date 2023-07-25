@@ -1,5 +1,7 @@
+import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import mongoose, { SortOrder } from 'mongoose';
+import config from '../../../config';
 import ApiError from '../../../errors/ApiError';
 import { paginationHelper } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
@@ -11,6 +13,12 @@ import { generateUserId } from './user.utils';
 
 const createUser = async (user: IUser): Promise<IUser | null> => {
   //generate user id
+
+  user.password = await bcrypt.hash(
+    user.password,
+    Number(config.bcrypt_salt_rounds),
+  );
+  console.log(user.password);
   let newUserAllData = null;
   const session = await mongoose.startSession();
   try {

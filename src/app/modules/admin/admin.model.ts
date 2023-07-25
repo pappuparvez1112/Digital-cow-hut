@@ -2,9 +2,9 @@ import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import { Schema, model } from 'mongoose';
 import ApiError from '../../../errors/ApiError';
-import { IUser, UserModel } from './user.interface';
+import { AdminModel, IAdmin } from './admin.interface';
 
-const UserSchema = new Schema<IUser, UserModel>(
+const AdminSchema = new Schema<IAdmin, AdminModel>(
   {
     id: {
       type: String,
@@ -39,16 +39,9 @@ const UserSchema = new Schema<IUser, UserModel>(
       type: String,
       required: true,
     },
-    budget: {
-      type: Number,
-      required: true,
-    },
-    income: {
-      type: String,
-      required: true,
-    },
     profileImage: {
       type: String,
+      // required: true,
     },
   },
   {
@@ -56,17 +49,17 @@ const UserSchema = new Schema<IUser, UserModel>(
   },
 );
 
-UserSchema.statics.isUserExist = async function (
+AdminSchema.statics.isUserExist = async function (
   phoneNumber: string,
-): Promise<Pick<IUser, 'phoneNumber' | 'password' | 'role'> | null> {
+): Promise<Pick<IAdmin, 'phoneNumber' | 'password' | 'role'> | null> {
   // console.log(phoneNumber, 'phoneNumber');
-  return await User.findOne(
+  return await Admin.findOne(
     { phoneNumber },
     { phoneNumber: 1, password: 1, role: 1 },
   );
 };
 
-UserSchema.statics.isPasswordMatched = async function (
+AdminSchema.statics.isPasswordMatched = async function (
   givenPassword: string,
   savedPassword: string,
 ): Promise<boolean> {
@@ -74,8 +67,8 @@ UserSchema.statics.isPasswordMatched = async function (
   return await bcrypt.compare(givenPassword, savedPassword);
 };
 
-UserSchema.pre('save', async function (next) {
-  const isExist = await User.findOne({
+AdminSchema.pre('save', async function (next) {
+  const isExist = await Admin.findOne({
     phoneNumber: this.phoneNumber,
   });
   if (isExist) {
@@ -87,4 +80,4 @@ UserSchema.pre('save', async function (next) {
   next();
 });
 
-export const User = model<IUser, UserModel>('User', UserSchema);
+export const Admin = model<IAdmin, AdminModel>('Admin', AdminSchema);
