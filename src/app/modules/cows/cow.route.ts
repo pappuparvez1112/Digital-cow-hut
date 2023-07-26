@@ -9,20 +9,25 @@ const router = express.Router();
 
 router.post(
   '/',
-  // auth(ENUM_USER_ROLE.SELLER),
+  auth(ENUM_USER_ROLE.SELLER),
   validateRequest(CowValidation.createCowZodSchema),
   CowController.createCow,
 );
 
-router.get('/:id', auth(ENUM_USER_ROLE.SELLER), CowController.getSingleCow);
+router.get(
+  '/:id',
+  auth(ENUM_USER_ROLE.SELLER, ENUM_USER_ROLE.BUYER, ENUM_USER_ROLE.ADMIN),
+  CowController.getSingleCow,
+);
 
 router.patch(
   '/:id',
+  auth(ENUM_USER_ROLE.SELLER),
   validateRequest(CowValidation.updateCowZodSchema),
   CowController.updateCows,
 );
 
-router.delete('/:id', CowController.deleteCow);
+router.delete('/:id', auth(ENUM_USER_ROLE.SELLER), CowController.deleteCow);
 
 router.get(
   '/',
