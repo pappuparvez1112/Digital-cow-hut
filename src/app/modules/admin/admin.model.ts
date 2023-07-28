@@ -63,7 +63,7 @@ AdminSchema.statics.isPasswordMatched = async function (
   givenPassword: string,
   savedPassword: string,
 ): Promise<boolean> {
-  console.log(givenPassword, savedPassword);
+  // console.log(givenPassword, savedPassword);
   return await bcrypt.compare(givenPassword, savedPassword);
 };
 

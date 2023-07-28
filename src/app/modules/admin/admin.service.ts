@@ -100,7 +100,7 @@ const loginAdmin = async (
 };
 
 const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
-  console.log(token);
+  // console.log(token);
   //verify token
   // invalid token - synchronous
   let verifiedToken = null;
@@ -114,7 +114,7 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
   }
 
   const { adminPhoneNumber } = verifiedToken;
-  console.log(adminPhoneNumber, 'AdminId', verifiedToken);
+  // console.log(adminPhoneNumber, 'AdminId', verifiedToken);
 
   // user delete hoice kintu  refresh token ase
   // checking deleted user's refresh token

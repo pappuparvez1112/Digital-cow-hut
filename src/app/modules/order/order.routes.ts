@@ -13,20 +13,10 @@ router.post(
   validateRequest(OrdersValidation.createOrdersZodSchema),
   OrdersController.createOrders,
 );
-router.get('/', auth(ENUM_USER_ROLE.ADMIN), OrdersController.getAllOrders);
-
-// router.get('/:id', AcademicDepartmentController.getSingleDepartment);
-
-// router.patch(
-//   '/:id',
-//   validateRequest(
-//     AcademicDepartmentValidation.updateAcademicDepartmentZodSchema,
-//   ),
-//   AcademicDepartmentController.updateDepartment,
-// );
-
-// router.delete('/:id', AcademicDepartmentController.deleteDepartment);
-
-// router.get('/', AcademicDepartmentController.getAllDepartments);
+router.get(
+  '/',
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.BUYER, ENUM_USER_ROLE.SELLER),
+  OrdersController.getAllOrders,
+);
 
 export const OrdersRoutes = router;

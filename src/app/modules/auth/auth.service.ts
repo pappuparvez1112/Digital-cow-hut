@@ -31,6 +31,7 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
 
   //create access token & refresh token
   const { phoneNumber: adminPhoneNumber, role } = isUserExist;
+
   const accessToken = jwtHelpers.createToken(
     { adminPhoneNumber, role },
     config.jwt.secret as Secret,
