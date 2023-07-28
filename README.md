@@ -31,6 +31,6 @@ Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/orders (GET)
 Bonus Part
 Admin
 -Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/admin/create-admin (POST)
--Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/admin/create-admin (get)
+-Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/admin (get)
 -Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/admin/login (login)
 -Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/admin/refresh-token (refreshtoken)
