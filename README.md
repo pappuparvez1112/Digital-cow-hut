@@ -1,30 +1,36 @@
-livelink: https://digital-cow-hut-backend-orcin.vercel.app/
+Live Link: https://cow-hut-admin-backend-two.vercel.app
+
+Application Routes:
+Main part
+Auth (User)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/auth/login (POST)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/auth/signup (POST)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/auth/refresh-token (POST)
+
+Auth (Admin)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/admins/create-admin (POST)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/admins/login (POST)
 
 User
-
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/auth/signup (POST)
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/users (GET)
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/users/64b18d10127e9978b913f518 (Single GET)
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/users/64b13898c375fbc277cc5951 (PATCH)
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/users/64b17462755fb2a254b7efc9(DELETE)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/users (GET)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/users/64c35bf8c8ce6f9589309802(Single GET)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/users/64c35c6bc8ce6f958930980c (PATCH)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/users/64bf53f64eec7633fcc157c3 (DELETE)
 
 Cows
-
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows (POST)
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows (GET)
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/64b18a7b78c30d8fc7e4d85a (Single GET)
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/64b18a7b78c30d8fc7e4d85a (PATCH)
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/64b15f76755fb2a254b7efb9 (DELETE)
-
-Pagination and Filtering routes of Cows
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/?page=1&limit=10
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/?sortBy=price&sortOrder=asc
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/?minPrice=20000&maxPrice=50000
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/?location=dhaka
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/cows/?searchTerm=ra
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/cows (POST)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/cows (GET)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/cows/64c0b74c5d5cddd00e1e6b0c (Single GET)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/cows/64c0b74c5d5cddd00e1e6b0c (PATCH)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/cows/64c0b72c5d5cddd00e1e6b08 (DELETE)
 
 Orders
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/orders (POST)
-https://digital-cow-hut-backend-orcin.vercel.app/api/v1/orders (GET)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/orders (POST)
+Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/orders (GET)
 
-check
+Bonus Part
+Admin
+-Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/admin/create-admin (POST)
+-Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/admin/create-admin (get)
+-Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/admin/login (login)
+-Route: https://cow-hut-admin-backend-two.vercel.app/api/v1/admin/refresh-token (refreshtoken)

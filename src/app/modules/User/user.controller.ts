@@ -52,7 +52,7 @@ const getSingleUser = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IUser>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'buyer fetched successfully !',
+    message: 'user fetched successfully !',
     data: result,
   });
 });
@@ -65,7 +65,7 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IUser>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'buyer update retrieved successfully',
+    message: 'user update retrieved successfully',
     data: result,
   });
 });
@@ -77,7 +77,7 @@ const deleteUser = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IUser>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'buyer deleted successfully',
+    message: 'user deleted successfully',
     data: result,
   });
 });

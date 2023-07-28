@@ -65,7 +65,7 @@ const getSingleUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'buyer fetched successfully !',
+        message: 'user fetched successfully !',
         data: result,
     });
 }));
@@ -76,7 +76,7 @@ const updateUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'buyer update retrieved successfully',
+        message: 'user update retrieved successfully',
         data: result,
     });
 }));
@@ -86,7 +86,7 @@ const deleteUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'buyer deleted successfully',
+        message: 'user deleted successfully',
         data: result,
     });
 }));

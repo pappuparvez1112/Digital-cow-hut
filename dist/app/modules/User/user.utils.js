@@ -9,7 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateUserId = exports.findLastUserId = void 0;
+exports.generateAdminId = exports.findLastAdminId = exports.generateUserId = exports.findLastUserId = void 0;
+const admin_constant_1 = require("../admin/admin.constant");
 const user_constant_1 = require("./user.constant");
 const user_model_1 = require("./user.model");
 // Buyer Id
@@ -34,3 +35,20 @@ const generateUserId = () => __awaiter(void 0, void 0, void 0, function* () {
     return incrementedId;
 });
 exports.generateUserId = generateUserId;
+// Admin ID
+const findLastAdminId = () => __awaiter(void 0, void 0, void 0, function* () {
+    const lastAdmin = yield user_model_1.User.findOne({ role: admin_constant_1.AdminRole }, { id: 1, _id: 0 })
+        .sort({
+        createdAt: -1,
+    })
+        .lean();
+    return (lastAdmin === null || lastAdmin === void 0 ? void 0 : lastAdmin.id) ? lastAdmin.id.substring(2) : undefined;
+});
+exports.findLastAdminId = findLastAdminId;
+const generateAdminId = () => __awaiter(void 0, void 0, void 0, function* () {
+    const currentId = (yield (0, exports.findLastAdminId)()) || (0).toString().padStart(5, '0');
+    let incrementedId = (parseInt(currentId) + 1).toString().padStart(5, '0');
+    incrementedId = `A-${incrementedId}`;
+    return incrementedId;
+});
+exports.generateAdminId = generateAdminId;

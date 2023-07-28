@@ -12,12 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Admin = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const http_status_1 = __importDefault(require("http-status"));
 const mongoose_1 = require("mongoose");
 const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
-const UserSchema = new mongoose_1.Schema({
+const AdminSchema = new mongoose_1.Schema({
     id: {
         type: String,
         required: true,
@@ -51,35 +51,28 @@ const UserSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    budget: {
-        type: Number,
-        required: true,
-    },
-    income: {
-        type: String,
-        required: true,
-    },
     profileImage: {
         type: String,
+        // required: true,
     },
 }, {
     timestamps: true,
 });
-UserSchema.statics.isUserExist = function (phoneNumber) {
+AdminSchema.statics.isUserExist = function (phoneNumber) {
     return __awaiter(this, void 0, void 0, function* () {
         // console.log(phoneNumber, 'phoneNumber');
-        return yield exports.User.findOne({ phoneNumber }, { phoneNumber: 1, password: 1, role: 1 });
+        return yield exports.Admin.findOne({ phoneNumber }, { phoneNumber: 1, password: 1, role: 1 });
     });
 };
-UserSchema.statics.isPasswordMatched = function (givenPassword, savedPassword) {
+AdminSchema.statics.isPasswordMatched = function (givenPassword, savedPassword) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log(givenPassword, savedPassword);
+        // console.log(givenPassword, savedPassword);
         return yield bcrypt_1.default.compare(givenPassword, savedPassword);
     });
 };
-UserSchema.pre('save', function (next) {
+AdminSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const isExist = yield exports.User.findOne({
+        const isExist = yield exports.Admin.findOne({
             phoneNumber: this.phoneNumber,
         });
         if (isExist) {
@@ -88,4 +81,4 @@ UserSchema.pre('save', function (next) {
         next();
     });
 });
-exports.User = (0, mongoose_1.model)('User', UserSchema);
+exports.Admin = (0, mongoose_1.model)('Admin', AdminSchema);

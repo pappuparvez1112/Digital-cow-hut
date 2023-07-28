@@ -19,4 +19,10 @@ const OrdersSchema = new mongoose_1.Schema({
         virtuals: true,
     },
 });
+// OrdersSchema.statics.isUserExist = async function (
+//   id: string,
+// ): Promise<Pick<IOrders, 'buyer' | 'cow'> | null> {
+//   // console.log(phoneNumber, 'phoneNumber');
+//   return await Orders.findOne({ id }, { cow: 1, buyer: '1' });
+// };
 exports.Orders = (0, mongoose_1.model)('Orders', OrdersSchema);

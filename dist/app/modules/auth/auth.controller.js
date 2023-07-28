@@ -23,38 +23,47 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrdersController = void 0;
+exports.AuthController = void 0;
 const http_status_1 = __importDefault(require("http-status"));
-const pagination_1 = require("../../../constant/pagination");
+const config_1 = __importDefault(require("../../../config"));
 const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
-const pick_1 = __importDefault(require("../../../shared/pick"));
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
-const order_constants_1 = require("./order.constants");
-const order_service_1 = require("./order.service");
-const createOrders = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const ordersData = __rest(req.body, []);
-    console.log(ordersData);
-    const result = yield order_service_1.OrdersService.createOrders(ordersData);
+const auth_service_1 = require("./auth.service");
+const loginUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const loginData = __rest(req.body, []);
+    const result = yield auth_service_1.AuthService.loginUser(loginData);
+    const { refreshToken } = result, others = __rest(result, ["refreshToken"]);
+    //set refreshToken into cookie
+    const cookieOptions = {
+        secure: config_1.default.env === 'production' ? true : false,
+        httpOnly: true,
+    };
+    res.cookie('refreshToken', refreshToken, cookieOptions);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Orders created successfully',
+        message: 'User logged in successfully',
+        data: others,
+    });
+}));
+const refreshToken = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { refreshToken } = req.cookies;
+    console.log(req.cookies);
+    const result = yield auth_service_1.AuthService.refreshToken(refreshToken);
+    //set refreshToken into cookie
+    const cookieOptions = {
+        secure: config_1.default.env === 'production' ? true : false,
+        httpOnly: true,
+    };
+    res.cookie('refreshToken', refreshToken, cookieOptions);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'User logged in successfully',
         data: result,
     });
 }));
-const getAllOrders = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const filters = (0, pick_1.default)(req.query, order_constants_1.orderFilterableFields);
-    const paginationOptions = (0, pick_1.default)(req.query, pagination_1.paginationFields);
-    const result = yield order_service_1.OrdersService.getAllOrders(filters, paginationOptions);
-    (0, sendResponse_1.default)(res, {
-        statusCode: http_status_1.default.OK,
-        success: true,
-        message: 'Orders fetched successfully',
-        meta: result.meta,
-        data: result.data,
-    });
-}));
-exports.OrdersController = {
-    createOrders,
-    getAllOrders,
+exports.AuthController = {
+    loginUser,
+    refreshToken,
 };

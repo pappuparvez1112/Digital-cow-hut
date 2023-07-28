@@ -24,8 +24,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const http_status_1 = __importDefault(require("http-status"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const config_1 = __importDefault(require("../../../config"));
 const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
 const paginationHelper_1 = require("../../../helpers/paginationHelper");
 const user_constant_1 = require("./user.constant");
@@ -33,6 +35,8 @@ const user_model_1 = require("./user.model");
 const user_utils_1 = require("./user.utils");
 const createUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     //generate user id
+    user.password = yield bcrypt_1.default.hash(user.password, Number(config_1.default.bcrypt_salt_rounds));
+    console.log(user.password);
     let newUserAllData = null;
     const session = yield mongoose_1.default.startSession();
     try {
